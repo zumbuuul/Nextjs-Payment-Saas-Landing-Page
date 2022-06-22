@@ -9,6 +9,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
+import { signIn, signOut } from "next-auth/react";
+
 function Navbar() {
   return (
     <NavbarElement>
@@ -37,7 +39,26 @@ function Navbar() {
         </Link>
       </NavbarText>
       <NavbarSpaceElementBig></NavbarSpaceElementBig>
-      <NavbarDownloadButton>DOWNLOAD</NavbarDownloadButton>
+      <Link href="/api/auth/signin">
+        <NavbarDownloadButton
+          onClick={(e) => {
+            e.preventDefault();
+            signIn();
+          }}
+        >
+          Sign up
+        </NavbarDownloadButton>
+      </Link>
+      <Link href="/api/auth/signout ">
+        <NavbarDownloadButton
+          onClick={(e) => {
+            e.preventDefault();
+            signOut();
+          }}
+        >
+          Sign out
+        </NavbarDownloadButton>
+      </Link>
     </NavbarElement>
   );
 }
